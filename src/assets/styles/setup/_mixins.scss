@@ -99,6 +99,7 @@
   line-height: 1.25;
   font-size: em(14px);
   font-variation-settings: 'wght' 430;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
 
@@ -119,7 +120,7 @@
 
     &:hover {
       background-color: $clr1;
-      color: $clr3;
+      color: $clr2;
     }
   }
 

@@ -10,10 +10,12 @@
 
 // /* cmps */
 @import './cmps/app-header';
-@import './cmps/search';
-@import './cmps/search-result-list';
-@import './cmps/user-msg';
+// @import './cmps/search';
+// @import './cmps/search-result-list';
+// @import './cmps/user-msg';
+
 
 
 
 /* pages */
+@import './pages/signin-signup-page'

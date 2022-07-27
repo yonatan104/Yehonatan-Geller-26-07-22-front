@@ -11,8 +11,7 @@ function App() {
       <AppHeader/>
       <Routes>
         <Route path="/chat/:id" element={<Chat />} />
-        <Route path="/signin" element={<SigninSignupPage />} />
-        <Route path="/login" element={<SigninSignupPage />} />
+        <Route path="/sign" element={<SigninSignupPage />} />
         <Route path="/friends" element={<MyFriends />} />
         <Route path="/search" element={<Search />} />
         <Route path="/" element={<Home />} />

@@ -15,7 +15,7 @@ export const AppHeader = () => {
         <button className="btn-dark" onClick={() => navigate("/search")}>
           Search
         </button>
-        <button className="btn-dark" onClick={() => navigate("/login")}>
+        <button className="btn-dark" onClick={() => navigate("/sign")}>
           Logout
           {/* TO DO: logoutfunction and than navigate to login page  */}
         </button>
