@@ -25,7 +25,7 @@ export const SigninSignupPage = () => {
     try {
       if (isSignup) await userService.signup(credentials as User);
       else await userService.login(credentials);
-      navigate('/friends')
+      navigate('/chat-app/friends')
 
     } catch (error) {
       console.error("can not submit credentials", error);

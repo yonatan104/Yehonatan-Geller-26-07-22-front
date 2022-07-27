@@ -1,29 +1,46 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { User } from "../models/user.model";
+import { userService } from "../services/user.service";
 
 export const AppHeader = () => {
   const navigate = useNavigate();
+  // const [loggeduser, setLoggeduser] = useState({} as User);
+  const [src, setSrc] = useState(
+    "https://e7.pngegg.com/pngimages/69/512/png-clipart-computer-icons-contact-monochrome-silhouette-thumbnail.png"
+  );
+  useEffect(() => {
+    const loggedUser = userService.getLoggedinUser()
+    if (loggedUser?.imgUrl && loggedUser.imgUrl.length > 0) setSrc(loggedUser.imgUrl);
+  }, []);
+  const onLogout = async () => {
+    try {
+      await userService.logout();
+      navigate("/sign");
+    } catch (error) {
+      console.error("can not logout", error);
+    }
+  };
   return (
     <div className="app-header">
-      <h2 className="logo">Chat App</h2>
+      <h2 className="logo" onClick={() => navigate("friends")}>
+        Chat App
+      </h2>
       <div className="btns-container">
         <button
           className="btn-dark .tag-text"
-          onClick={() => navigate("/friends")}
+          onClick={() => navigate("friends")}
         >
           My friends
         </button>
-        <button className="btn-dark" onClick={() => navigate("/search")}>
+        <button className="btn-dark" onClick={() => navigate("search")}>
           Search
         </button>
-        <button className="btn-dark" onClick={() => navigate("/sign")}>
+        <button className="btn-dark" onClick={onLogout}>
           Logout
-          {/* TO DO: logoutfunction and than navigate to login page  */}
         </button>
         <div className="avatar-container">
-          <img
-            src="https://pps.whatsapp.net/v/t61.24694-24/294124922_417915870353903_2633701057033364199_n.jpg?ccb=11-4&oh=01_AVxyqrmU3dnYMBiECaOkc3v53MFFABv5989lvg1jV84Gpw&oe=62EF7922"
-            alt=""
-          />
+          <img src={src} alt="" />
         </div>
         {/* TO DO: to add avatar img  */}
       </div>
