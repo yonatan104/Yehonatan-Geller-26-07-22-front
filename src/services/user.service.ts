@@ -46,6 +46,7 @@ async function login(userCred:{username:string, password:string}) {
   }
 }
 async function signup(userCred: User) {
+  console.log("🚀 ~ file: user.service.ts ~ line 49 ~ signup ~ userCred", userCred)
   const user = await httpService.post('auth/signup', userCred)
   // socketService.emit('set-user-socket', user._id);
   return saveLocalUser(user)

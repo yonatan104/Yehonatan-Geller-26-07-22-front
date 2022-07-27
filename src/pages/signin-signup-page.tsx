@@ -1,24 +1,35 @@
 import { ChangeEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { User } from "../models/user.model";
 import { cloudinaryService } from "../services/cloudinary.service";
+import { userService } from "../services/user.service";
 
 export const SigninSignupPage = () => {
-  const [isSignin, setIsSignin] = useState(true);
+  const [isSignup, setIsSignup] = useState(true);
   const [imgUrl, setImgUrl] = useState(
     "https://e7.pngegg.com/pngimages/69/512/png-clipart-computer-icons-contact-monochrome-silhouette-thumbnail.png"
   );
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
-    fullname: "",
+    fullName: "",
     username: "",
     password: "",
     imgUrl: "",
   });
 
   const onToggleSign = () => {
-    setIsSignin((prevIsSignin) => !prevIsSignin);
+    setIsSignup((prevIsSignin) => !prevIsSignin);
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("credentials", credentials);
+    try {
+      if (isSignup) await userService.signup(credentials as User);
+      else await userService.login(credentials);
+      navigate('/friends')
+
+    } catch (error) {
+      console.error("can not submit credentials", error);
+    }
   };
 
   const handleImgUpload = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +48,7 @@ export const SigninSignupPage = () => {
   return (
     <div className="sign-page-container">
       <div className="sign-modal">
-        {isSignin && (
+        {isSignup && (
           <div className="img-container-main">
             <div className="img-container">
               <img src={imgUrl} alt="" />
@@ -51,13 +62,13 @@ export const SigninSignupPage = () => {
           </div>
         )}
         <form onSubmit={handleSubmit}>
-          {isSignin && (
+          {isSignup && (
             <div className="input-container">
               <input
                 onInput={(event: any) => {
                   setCredentials((prevCred) => ({
                     ...prevCred,
-                    fullname: event.target.value,
+                    fullName: event.target.value,
                   }));
                 }}
                 type="text"
@@ -90,17 +101,17 @@ export const SigninSignupPage = () => {
             />
           </div>
           <div className="bttn-container">
-            {!isSignin && <button>Login</button>}
-            {isSignin && <button>Signup</button>}
+            {!isSignup && <button>Login</button>}
+            {isSignup && <button>Signup</button>}
           </div>
         </form>
         <div className="bttn-switch-container">
-          {isSignin && (
+          {isSignup && (
             <div onClick={() => onToggleSign()}>
               Have acount? Switch to Login
             </div>
           )}
-          {!isSignin && (
+          {!isSignup && (
             <div onClick={() => onToggleSign()}>
               Dont have acount yet? Switch to signup
             </div>

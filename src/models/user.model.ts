@@ -1,7 +1,7 @@
 export interface User{
     _id: string
     username: string
-    fullname: string
+    fullName: string
     password?: string
     imgUrl:string
     chatRoomsIds: string[]
