@@ -1,0 +1,113 @@
+.account-preview-container  {
+    cursor: pointer;
+    background-color: $clr3;
+    border-radius: 6px;
+    flex: 1;
+    padding: 16px;
+    position: relative;
+    transition: background-color .3s ease;
+    // width: 100%;
+    width: 200px;
+
+    // @include for-mobile-layout {
+    //     background-color: inherit;
+    //     padding: 0px;
+    //     width: 150px;
+    // }
+
+
+    .inner-container {
+        height: 100%;
+
+        .account-cover {
+            margin-bottom: 16px;
+            position: relative;
+
+            .img-container {
+                background-color: #333;
+                box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+                padding-bottom: 100%;
+                position: relative;
+
+                img {
+                    box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+                }
+
+                .icon-container {
+                    align-items: center;
+                    border-radius: 2px;
+                    display: flex;
+                    height: 100%;
+                    justify-content: center;
+                    left: 0;
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                }
+
+                button {
+                    @include btn();
+                    position: absolute;
+                    bottom: 0;
+                    right: 8px;
+                    z-index: 2;
+                    box-shadow: 0 8px 8px rgb(0 0 0 / 30%);
+                    transition: all .3s ease;
+                    opacity: 0;
+
+                    &>* {
+                        width: 18px;
+                        height: 18px;
+                    }
+
+                    @include for-mobile-layout {
+                        display: none;
+                    }
+                }
+
+
+
+            }
+        }
+
+
+
+        .account-details {
+            min-height: 62px;
+            background-color: inherit;
+
+
+            .account-name {
+                font-size: 16px;
+                line-height: 1.5rem;
+                text-transform: none;
+                letter-spacing: normal;
+                font-weight: 700;
+                padding-bottom: 4px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .account-preview-info {
+                box-sizing: border-box;
+                margin-block: 0px;
+                line-height: 1rem;
+                font-weight: 400;
+                color: $clr9;
+                font-family: circular-medium;
+            }
+        }
+    }
+
+    @include for-medium-layout {
+        &:hover {
+            .station-cover button {
+                opacity: 1 !important;
+                bottom: 8px !important;
+            }
+
+            background-color: $clr11
+        }
+    }
+}

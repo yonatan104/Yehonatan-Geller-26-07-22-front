@@ -10,12 +10,13 @@
 
 // /* cmps */
 @import './cmps/app-header';
-// @import './cmps/search';
-// @import './cmps/search-result-list';
+@import './cmps/account-list';
+@import './cmps/account-preview';
 // @import './cmps/user-msg';
 
 
 
 
 /* pages */
-@import './pages/signin-signup-page'
+@import './pages/signin-signup-page';
+@import './pages/search-page';
