@@ -1,0 +1,61 @@
+// Flex
+.flex {
+  display: flex;
+}
+
+.flex.column {
+  flex-direction: column;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.space-between {
+  justify-content: space-between
+}
+
+.flex.align-center {
+  align-items: center;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+// List
+.clean-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+// Text
+
+.tag-text {
+  color: $clr1;
+  text-transform: uppercase;
+  @include type(boldCondensed);
+}
+
+// Spacers
+
+.content-spacing {
+  padding: 0 16px;
+  
+  @include for-large-layout {
+    padding: 0 32px;
+  }
+}
+
+// Buttons
+.clean-btn {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}
+
+// positions
+.relative {
+  position: relative;
+}

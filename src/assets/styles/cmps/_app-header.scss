@@ -1,0 +1,95 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  // position: sticky;
+  top: 0;
+  align-items: center;
+  z-index: 20;
+  padding: 16px 12px;
+  .logo{
+    color: $clr2;
+
+  }
+
+  @include for-mobile-layout {
+    padding: 16px 0px;
+  }
+
+  .btns-container {
+    display: flex;
+    white-space: nowrap;
+    .avatar-container {
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+        border-radius: 50%;
+        position: relative;
+    
+        // .svg-container {
+        //   left: 0;
+        //   position: absolute;
+        //   top: 0;
+        //   display: flex;
+        //   align-items: center;
+        //   justify-content: center;
+        //   width: 100%;
+        //   height: 100%;
+    
+        //   svg {
+        //     width: 100%;
+        //     height: 100%;
+        //     display: block;
+        //     pointer-events: none;
+        //   }
+        // }
+    
+        img {
+          opacity: 1;
+          visibility: visible;
+          border-radius: 50%;
+    
+          position: relative;
+          display: block;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          transition: opacity .15s ease-out;
+          object-fit: cover;
+        }
+      }
+    
+    .btn-logout {
+      border-radius: 500px;
+      font-size: inherit;
+      padding-block: 12px;
+      padding-inline: 32px;
+      border: none;
+
+      @include for-mobile-layout {
+        padding-block: 10px;
+        padding-inline: 20px;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .btn-dark {
+      font-weight: 700;
+      background-color: transparent;
+      border: none;
+      border-radius: 500px;
+      text-align: center;
+      vertical-align: middle;
+      color: var(--text-subdued, #bab4b4);
+      padding-block: 14px;
+      padding-inline: 32px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
