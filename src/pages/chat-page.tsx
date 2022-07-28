@@ -4,6 +4,7 @@ import { ChatFooter } from "../cmps/chat-footer";
 import { ChatHeader } from "../cmps/chat-header";
 import { MessageList } from "../cmps/message-list";
 import { ChatRoom, Message } from "../models/chat-room.model";
+import { User } from "../models/user.model";
 import { chatRoomService } from "../services/chat-room.service";
 import { socketService } from "../services/socket.service";
 import { userService } from "../services/user.service";
@@ -11,7 +12,7 @@ import { utilService } from "../services/util.service";
 
 export const Chat = () => {
     const [chatRoom,setChatRoom] = useState({}as ChatRoom)
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({} as User);
     const params = useParams();
   useEffect(() => {
     loadChatRoom();
@@ -59,7 +60,7 @@ export const Chat = () => {
   if (!chatRoom||!chatRoom.messages) return <div>loading...</div>;
   return (
     <div className="chat-page-container">
-      <ChatHeader/>
+      <ChatHeader user={user}/>
       <MessageList messages={chatRoom.messages} />
       <ChatFooter sendMsg={onSendMsg} />
     </div>
