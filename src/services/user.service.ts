@@ -2,6 +2,7 @@
 // import { socketService } from './socket.service'
 import { User } from '../models/user.model'
 import { httpService } from './http.service'
+import { socketService } from './socket.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
@@ -15,6 +16,7 @@ export const userService = {
   getById,
   remove,
   update,
+  refreshLoggedUser,
 }
 
 
@@ -39,22 +41,32 @@ async function update(user: User) {
 
 async function login(userCred:{username:string, password:string}) {
   const user = await httpService.post('auth/login', userCred)
-  // socketService.emit('set-user-socket', user._id);
+  socketService.emit('set-user-socket', user._id);
   if (user) {
-    // socketService.login(user._id)
+    socketService.login(user._id)
     return saveLocalUser(user)
   }
 }
 async function signup(userCred: User) {
   console.log("🚀 ~ file: user.service.ts ~ line 49 ~ signup ~ userCred", userCred)
   const user = await httpService.post('auth/signup', userCred)
-  // socketService.emit('set-user-socket', user._id);
+  socketService.emit('set-user-socket', user._id);
   return saveLocalUser(user)
 }
 async function logout() {
   sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-  // socketService.emit('unset-user-socket');
+  socketService.logout();
   return await httpService.post('auth/logout')
+}
+
+async function refreshLoggedUser(user:User) {
+  console.log('refresh user!!');
+  
+  const loggedUser = getLoggedinUser()
+  if(!loggedUser || !loggedUser._id) return
+  const newLoggedUser = await getById(loggedUser._id)
+  console.log("🚀 ~ file: user.service.ts ~ line 68 ~ refreshLoggedUser ~ newLoggedUser", newLoggedUser)
+  saveLocalUser(user)
 }
 
 

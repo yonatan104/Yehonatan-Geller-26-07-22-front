@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ChatFooter } from "../cmps/chat-footer";
+import { ChatHeader } from "../cmps/chat-header";
 import { MessageList } from "../cmps/message-list";
 import { ChatRoom, Message } from "../models/chat-room.model";
 import { chatRoomService } from "../services/chat-room.service";
+import { socketService } from "../services/socket.service";
 import { userService } from "../services/user.service";
 import { utilService } from "../services/util.service";
 
@@ -14,6 +16,13 @@ export const Chat = () => {
   useEffect(() => {
     loadChatRoom();
   },[]);
+  useEffect(() => {
+    socketService.on('new-message', onSetChatRoom);
+  }, []);
+  
+    const onSetChatRoom = async (chatRoom: SetStateAction<ChatRoom>) => {
+      setChatRoom( chatRoom);
+    };
   const loadChatRoom = async () => {
     try {
       const {friendId, chatRoomId} = params
@@ -28,7 +37,7 @@ export const Chat = () => {
         console.error('Can not load chat room', error);
     }
   };
-  const onSendMsg = (text:string) =>{
+  const onSendMsg = async(text:string) =>{
     const loggedUser = userService.getLoggedinUser()
     if (text === '') return 
     const message = {
@@ -43,14 +52,14 @@ export const Chat = () => {
     } as Message;
     const chatRoomTosend = chatRoom
     chatRoomTosend.messages.push({ ...message });
-    console.log("🚀 ~ file: chat-page.tsx ~ line 46 ~ onSendMsg ~ chatRoomTosend", chatRoomTosend)
-
-    // this.webSocketService.emit('send-message', this.chatRoom)
-    chatRoomService.save(chatRoomTosend);
+    socketService.emit("send-message", chatRoomTosend);
+     const savedChatRoom= await chatRoomService.save(chatRoomTosend);
+     setChatRoom(savedChatRoom)
   }
   if (!chatRoom||!chatRoom.messages) return <div>loading...</div>;
   return (
     <div className="chat-page-container">
+      <ChatHeader/>
       <MessageList messages={chatRoom.messages} />
       <ChatFooter sendMsg={onSendMsg} />
     </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 type ChatFooterProps = {
   sendMsg: Function;
@@ -8,13 +8,14 @@ export const ChatFooter = ({ sendMsg }: ChatFooterProps) => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     sendMsg(text);
+     event.target[0].value = ''
   };
   return (
     <div className="chat-footer-container">
       <form onSubmit={handleSubmit}>
         <div className="chat-footer">
           <div className="input-container">
-            <input
+            <input 
               onInput={(event: any) => setText(event.target.value)}
               type="text"
               placeholder="Type a message"

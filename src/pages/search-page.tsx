@@ -3,6 +3,7 @@ import { AccountList } from "../cmps/accounts-list";
 import { ChatRoom } from "../models/chat-room.model";
 import { Friend, User } from "../models/user.model";
 import { chatRoomService } from "../services/chat-room.service";
+import { socketService } from "../services/socket.service";
 import { userService } from "../services/user.service";
 type usersProps = {
   users: User[];
@@ -24,8 +25,9 @@ export const Search = () => {
     console.log("🚀 ~ file: search-page.tsx ~ line 24 ~ onAdd ~ loggedUser", loggedUser)
     userToAdd.friends.push(makeFriend(loggedUser, chatRoom._id));
     console.log("🚀 ~ file: search-page.tsx ~ line 25 ~ onAdd ~ userToAdd", userToAdd)
-    userService.update(loggedUser);
-    userService.update(userToAdd);
+    await userService.update(loggedUser);
+    const userAdded =  await userService.update(userToAdd);
+    socketService.emit("add-friend", userAdded);
   };
   const makeFriend = (user: User, chatRoomId: string) => {
     return {
