@@ -1,0 +1,44 @@
+.chat-footer-container {
+    padding: 0;
+    background-color: $compose-panel-background;
+
+    position: relative;
+    z-index: 100;
+    box-sizing: border-box;
+    flex: none;
+    order: 3;
+    width: 100%;
+    min-height: 62px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    .chat-footer {
+        position: relative;
+        flex: 1;
+        width: 100%;
+        min-width: 0;
+        min-height: 52px;
+
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+
+       
+
+
+        .record {
+            padding: 5px 10px;
+
+            .record-bttn {
+                color: $icon;
+                outline: none;
+                padding: 0;
+                cursor: pointer;
+                background: none;
+                border: 0;
+            }
+        }
+    }
+}

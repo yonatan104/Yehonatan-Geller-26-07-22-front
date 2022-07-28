@@ -11,7 +11,7 @@ export class ChatRoom {
 export interface Message {
     _id?: string
     fromUser: {
-        name: string
+        username: string
         imgUrl: string
         userId: string
     }

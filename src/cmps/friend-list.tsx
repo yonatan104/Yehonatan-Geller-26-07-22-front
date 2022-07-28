@@ -3,12 +3,13 @@ import { FriendPreview } from "./friend-preview";
 
 type FriendsProps = {
   friends: Friend[];
+  enterChatRoom:Function
 };
-export const FriendsList = ({ friends }: FriendsProps) => {
+export const FriendsList = ({ friends, enterChatRoom }: FriendsProps) => {
   return (
     <div className="friends-list-container">
       {friends.map((friend) => (
-        <div key={friend._id}>
+        <div onClick={() => enterChatRoom(friend)} key={friend._id}>
           <FriendPreview friend={friend} />
         </div>
       ))}

@@ -6,12 +6,12 @@ import { Search } from "./search-page";
 export const ChatApp = () => {
   return (
     <div className="chat-app">
-        <AppHeader />
+      <AppHeader />
       <Routes>
         <Route path="/" element={<Search />} />
         <Route path="friends" element={<MyFriends />} />
         <Route path="search" element={<Search />} />
-        <Route path="chat/:id" element={<Chat />} />
+        <Route path="friends/:friendId/:chatRoomId" element={<Chat />} />
       </Routes>
     </div>
   );
