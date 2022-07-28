@@ -1,10 +1,10 @@
 import { User } from "../models/user.model";
 
-type userProps = {
+type UserProps = {
   user: User;
 };
 
-export const AccountPreview = ({ user }: userProps) => {
+export const AccountPreview = ({ user }: UserProps) => {
   return (
     <div className="account-preview-container">
       <div className="inner-container">
@@ -23,8 +23,8 @@ export const AccountPreview = ({ user }: userProps) => {
         </div>
 
         <div className="account-details">
-            <div className="account-name">{user.fullName}</div>
-            <div className="account-preview-info"></div>
+          <div className="account-name">{user.fullName}</div>
+          <div className="account-preview-info"></div>
         </div>
       </div>
     </div>
