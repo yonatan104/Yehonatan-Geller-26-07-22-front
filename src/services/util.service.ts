@@ -1,5 +1,6 @@
 export const utilService = {
     makeId,
+    dateToString,
 }
 function makeId(length = 6) {
     var txt = ''
@@ -10,4 +11,8 @@ function makeId(length = 6) {
     }
 
     return txt
+}
+
+function dateToString(date: any, language = 'he-IL') {
+    return Intl.DateTimeFormat(language, {  hour12: false, hour: 'numeric', minute: 'numeric' }).format(new Date(date))
 }
