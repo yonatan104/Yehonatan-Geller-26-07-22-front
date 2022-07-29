@@ -1,4 +1,3 @@
-import { PropsWithChildren } from "react";
 import { User } from "../models/user.model";
 import { AccountPreview } from "./account-preview";
 type UsersProps = {

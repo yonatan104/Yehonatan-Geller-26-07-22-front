@@ -1,5 +1,3 @@
-// import { storageService } from './async-storage.service'
-// import { socketService } from './socket.service'
 import { User } from '../models/user.model'
 import { httpService } from './http.service'
 import { socketService } from './socket.service'
@@ -48,7 +46,6 @@ async function login(userCred:{username:string, password:string}) {
   }
 }
 async function signup(userCred: User) {
-  console.log("🚀 ~ file: user.service.ts ~ line 49 ~ signup ~ userCred", userCred)
   const user = await httpService.post('auth/signup', userCred)
   socketService.emit('set-user-socket', user._id);
   return saveLocalUser(user)
@@ -60,12 +57,10 @@ async function logout() {
 }
 
 async function refreshLoggedUser(user:User) {
-  console.log('refresh user!!');
   
   const loggedUser = getLoggedinUser()
   if(!loggedUser || !loggedUser._id) return
   const newLoggedUser = await getById(loggedUser._id)
-  console.log("🚀 ~ file: user.service.ts ~ line 68 ~ refreshLoggedUser ~ newLoggedUser", newLoggedUser)
   saveLocalUser(user)
 }
 

@@ -13,7 +13,6 @@ export const MessagePreview = ({ message }: MessageProps) => {
     if (message &&userService.getLoggedinUser()._id !== message.fromUser.userId) {
       setMessageContent("incoming-message");
       setMessageContainer("incoming-message-container");
-      // messageContainer = "incoming-message-container";
     }
   },[])
   const getTime =(date:Number)=>{

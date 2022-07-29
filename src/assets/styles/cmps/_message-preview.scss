@@ -6,20 +6,11 @@
     position: relative;
     display: flex;
     flex-direction: row-reverse;
-    // flex-direction: column;
 
-    .tail-out {
-        transform: scaleX(1);
-        fill: #005c4b;
-    }
 
     &.incoming-message-container {
         flex-direction: row;
 
-        .tail-out {
-            transform: scaleX(-1);
-            fill: #202c33;
-        }
     }
 
 
@@ -28,7 +19,6 @@
     .message-content {
 
         border-radius: 7.5px;
-        border-top-left-radius: 0;
         background-color: #005c4b;
         padding: 6px 7px 8px 9px;
         max-width: 75%;
@@ -41,7 +31,6 @@
         &.incoming-message {
             background-color: #202c33;
             border-radius: 7.5px;
-            border-top-right-radius: 0;
         }
 
         .text {

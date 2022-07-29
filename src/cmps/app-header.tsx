@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { User } from "../models/user.model";
 import { userService } from "../services/user.service";
 
 export const AppHeader = () => {
   const navigate = useNavigate();
-  // const [loggeduser, setLoggeduser] = useState({} as User);
   const [src, setSrc] = useState(
     "https://e7.pngegg.com/pngimages/69/512/png-clipart-computer-icons-contact-monochrome-silhouette-thumbnail.png"
   );
@@ -42,7 +40,6 @@ export const AppHeader = () => {
         <div className="avatar-container">
           <img src={src} alt="" />
         </div>
-        {/* TO DO: to add avatar img  */}
       </div>
     </div>
   );

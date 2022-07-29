@@ -30,15 +30,7 @@ export const Chat = () => {
       if (!friendId || !chatRoomId)
         return console.error("There is not id in params");
       const user = await userService.getById(friendId);
-      console.log(
-        "🚀 ~ file: chat-page.tsx ~ line 19 ~ loadChatRoom ~ user",
-        user
-      );
       const chatRoomFromData = await chatRoomService.getById(chatRoomId);
-      console.log(
-        "🚀 ~ file: chat-page.tsx ~ line 16 ~ loadChatRoom ~ chatRoomFromData",
-        chatRoomFromData
-      );
       setChatRoom(chatRoomFromData);
       setUser(user);
     } catch (error) {
