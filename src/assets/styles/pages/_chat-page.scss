@@ -1,15 +1,23 @@
-.chat-page-container{
+.chat-page-container {
     position: absolute;
     inset: 0;
-    
-    .chat-page{
-        height: 60vh;
-        width: 60vw;
+    margin: 1rem;
+
+    .chat-page {
+        height: 80vh;
+        width: 80vw;
         position: relative;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
         display: grid;
         grid-template-rows: auto 1fr auto;
+        
+        @include for-mobile-layout {
+            transform: translate(-50%, -35%);
+            height: 80vh;
+            width: 100vw;
+           
+        }
     }
 }

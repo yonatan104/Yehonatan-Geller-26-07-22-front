@@ -52,12 +52,12 @@
         padding-block: 10px;
         padding-inline: 20px;
       }
-
+      
       &:hover {
         cursor: pointer;
       }
     }
-
+    
     .btn-dark {
       font-weight: 700;
       background-color: transparent;
@@ -68,10 +68,17 @@
       color: var(--text-subdued, #bab4b4);
       padding-block: 14px;
       padding-inline: 32px;
+      @include for-mobile-layout {
+        padding-block: 5px;
+        padding-inline: 10px;
+      }
+      
+
 
       &:hover {
         cursor: pointer;
       }
     }
   }
+  
 }

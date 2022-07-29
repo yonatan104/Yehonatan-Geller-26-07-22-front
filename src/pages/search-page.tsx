@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { AccountList } from "../cmps/accounts-list";
 import { Friend, User } from "../models/user.model";
 import { chatRoomService } from "../services/chat-room.service";
@@ -8,7 +7,6 @@ import { userService } from "../services/user.service";
 
 export const Search = () => {
   const [users, setUsers] = useState([] as User[]);
-  const dispatch = useDispatch();
   useEffect(() => {
     loadAccounts();
   }, []);

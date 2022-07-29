@@ -19,7 +19,7 @@ export const userService = {
 
 
 function getUsers() {
-  return httpService.get(`user`, { logedInUserId:getLoggedinUser()._id } )
+  return httpService.get(`user`, { loggedInUserId:getLoggedinUser()._id } )
 }
 
 async function getById(userId:string) {

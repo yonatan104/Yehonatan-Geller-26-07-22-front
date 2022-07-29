@@ -6,14 +6,13 @@
     padding: 16px;
     position: relative;
     transition: background-color .3s ease;
-    // width: 100%;
     width: 200px;
 
-    // @include for-mobile-layout {
-    //     background-color: inherit;
-    //     padding: 0px;
-    //     width: 150px;
-    // }
+    @include for-mobile-layout {
+        background-color: inherit;
+        padding: 0px;
+        width: 150px;
+    }
 
 
     .inner-container {

@@ -9,7 +9,7 @@ export const AccountList = ({ users, onAdd }: UsersProps) => {
     <div className="account-list">
       {users.map((user) => (
         <div onClick={() => onAdd(user)} key={user._id}>
-          <AccountPreview user={user} />
+          <AccountPreview user={user} type={'Click to add me to your friend list'}/>
         </div>
       ))}
     </div>
