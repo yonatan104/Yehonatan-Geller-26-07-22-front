@@ -8,8 +8,12 @@ export class ChatRoom {
 
     }
 }
-export interface miniUser{
-    username:string
+export interface MiniChatRoom {
+    miniUsers: miniUser[]
+    _id: string
+}
+export interface miniUser {
+    username: string
     fullName: string
     _id: string
     imgUrl: string

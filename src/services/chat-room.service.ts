@@ -7,6 +7,11 @@ export const chatRoomService = {
     save,
     getEmptyChatRoom,
     addChatRoom,
+    query,
+}
+async function query() {
+    const chatRooms = await httpService.get('chatRoom')
+    return chatRooms
 }
 
 async function getById(_id: string) {
