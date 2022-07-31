@@ -1,0 +1,42 @@
+.chat-room-preview {
+    background-color: rgba(128, 128, 128, 0.533);
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+    .users-container {
+        display: flex;
+        gap: 1rem;
+
+        // min-width: 200px;
+        .mini-user-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .avatar-container {
+                height: 100px;
+                width: 100px;
+                cursor: pointer;
+                border-radius: 50%;
+                position: relative;
+
+                img {
+                    opacity: 1;
+                    visibility: visible;
+                    border-radius: 50%;
+
+                    position: relative;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    transition: opacity .15s ease-out;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}

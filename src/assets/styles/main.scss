@@ -16,6 +16,8 @@
 @import './cmps/chat-header';
 @import './cmps/message-preview';
 @import './cmps/friend-list';
+@import './cmps/chat-room-list-container';
+@import './cmps/chat-room-preview';
 
 
 
@@ -25,3 +27,4 @@
 @import './pages/search-page';
 @import './pages/chat-page';
 @import './pages/my-friends-page';
+@import './pages/admin-page';
