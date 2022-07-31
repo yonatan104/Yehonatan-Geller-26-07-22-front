@@ -1,12 +1,18 @@
 export class ChatRoom {
 
     constructor(
-        public usersIds: string[],
+        public miniUsers: miniUser[],
         public messages: Message[],
         public _id?: string,
     ) {
 
     }
+}
+export interface miniUser{
+    username:string
+    fullName: string
+    _id: string
+    imgUrl: string
 }
 export interface Message {
     _id?: string

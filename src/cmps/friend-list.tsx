@@ -11,7 +11,6 @@ export const FriendsList = ({ friends, enterChatRoom }: FriendsProps) => {
     <div className="friends-list-container">
       {friends.map((friend) => (
         <div onClick={() => enterChatRoom(friend)} key={friend._id}>
-          {/* <FriendPreview friend={friend} /> */}
           <AccountPreview user ={friend} type={'Click me!! lets chat!'}/>
         </div>
       ))}

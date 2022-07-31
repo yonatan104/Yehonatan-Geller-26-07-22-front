@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { socketService } from "../services/socket.service";
 import { userService } from "../services/user.service";
 import { User } from "../models/user.model";
+import { Admin } from "./admin-page";
 export const ChatApp = () => {
     useEffect(() => {
       socketService.on("someone-added-me", onRefreshLoggedUser);
@@ -21,6 +22,7 @@ export const ChatApp = () => {
         <Route path="/" element={<Search />} />
         <Route path="friends" element={<MyFriends />} />
         <Route path="search" element={<Search />} />
+        <Route path="admin" element={<Admin />} />
         <Route path="friends/:friendId/:chatRoomId" element={<Chat />} />
       </Routes>
     </div>

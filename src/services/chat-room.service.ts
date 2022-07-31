@@ -1,4 +1,4 @@
-import { ChatRoom } from "../models/chat-room.model"
+import { ChatRoom, miniUser } from "../models/chat-room.model"
 import { User } from "../models/user.model"
 import { httpService } from "./http.service"
 
@@ -27,9 +27,9 @@ async function save(chatRoom: ChatRoom) {
 async function addChatRoom(loggedUser: User, secondUser: User) {
     try {
         const chatRoomToSave = getEmptyChatRoom() as ChatRoom;
-        chatRoomToSave.usersIds = [
-            loggedUser._id as string,
-            secondUser._id as string,
+        chatRoomToSave.miniUsers = [
+            makeMiniUser(loggedUser),
+            makeMiniUser(secondUser)
         ];
         const savedChatRoom = await save(chatRoomToSave);
         return savedChatRoom as ChatRoom
@@ -37,10 +37,17 @@ async function addChatRoom(loggedUser: User, secondUser: User) {
         console.error("can not add chat room", error);
     }
 };
-
+function makeMiniUser(user: User){
+    return {
+        _id: user._id,
+        fullName: user.fullName,
+        username: user.username,
+        imgUrl: user.imgUrl,
+    } as miniUser
+}
 function getEmptyChatRoom() {
     return {
-        usersIds: [],
+        miniUsers: [],
         messages: []
     }
 }
