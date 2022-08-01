@@ -4,10 +4,11 @@ import { AccountPreview } from "./account-preview";
 import { UserPreview } from "./user-preview";
 type UsersProps = {
   users: User[];
-  onRemove: Function
+  onRemove: Function;
+  onOpenModal: Function;
 };
 
-export const AdminUsersList = ({ users, onRemove }: UsersProps) => {
+export const AdminUsersList = ({ users, onRemove, onOpenModal }: UsersProps) => {
   return (
     <div className="admin-users-list-container">
       {users.map((user, idx) => (
@@ -16,6 +17,7 @@ export const AdminUsersList = ({ users, onRemove }: UsersProps) => {
             user={user}
             idx={idx}
             onRemove={onRemove}
+            onOpenModal={onOpenModal}
           />
         </div>
       ))}

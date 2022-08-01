@@ -4,8 +4,14 @@ type UserPreviewProps = {
   user: User;
   idx: number;
   onRemove: Function;
+  onOpenModal: Function;
 };
-export const UserPreview = ({ user, idx, onRemove }: UserPreviewProps) => {
+export const UserPreview = ({
+  user,
+  idx,
+  onRemove,
+  onOpenModal,
+}: UserPreviewProps) => {
   return (
     <div className="user-preview-container">
       <div className="serial-number">{idx + 1}</div>
@@ -26,7 +32,7 @@ export const UserPreview = ({ user, idx, onRemove }: UserPreviewProps) => {
       </div>
       <div className="actions">
         <button onClick={() => onRemove(user._id)}>Remove</button>
-        <button>Update</button>
+        <button onClick={() => onOpenModal(user)}>Update</button>
       </div>
     </div>
   );

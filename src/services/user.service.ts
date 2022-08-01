@@ -15,6 +15,7 @@ export const userService = {
   remove,
   update,
   refreshLoggedUser,
+  updateAll,
 }
 
 
@@ -31,7 +32,13 @@ function remove(userId: string) {
 }
 
 async function update(user: User) {
-  user = await httpService.put(`user/${user._id}`, user)
+  user = await httpService.put(`user/`, user)
+  // Handle case in which admin updates other user's details
+  if (getLoggedinUser()._id === user._id) saveLocalUser(user)
+  return user
+}
+async function updateAll(user: User) {
+  user = await httpService.put(`user/all`, user)
   // Handle case in which admin updates other user's details
   if (getLoggedinUser()._id === user._id) saveLocalUser(user)
   return user
