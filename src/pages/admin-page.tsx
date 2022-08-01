@@ -13,13 +13,8 @@ export const Admin = () => {
   const [chatRooms, setChatRooms] = useState([] as MiniChatRoom[]);
   const [IsModalOpen, setIsModalOpen] = useState(false);
   const [userToSave, setUserToSave] = useState({} as User);
-  // const [credentials, setCredentials] = useState({
-  //   fullName: "",
-  //   username: "",
-  //   password: "",
-  //   imgUrl:
-  //     "https://e7.pngegg.com/pngimages/69/512/png-clipart-computer-icons-contact-monochrome-silhouette-thumbnail.png",
-  // });
+  const [isSignup, setIsSignup] = useState(false);
+  
 
   useEffect(() => {
     loadUsers();
@@ -32,11 +27,6 @@ export const Admin = () => {
 
   const loadChatRooms = async () => {
     const chatRooms = await chatRoomService.query();
-    console.log(
-      "🚀 ~ file: admin-page.tsx ~ line 23 ~ loadChatRooms ~ chatRooms",
-      chatRooms
-    );
-
     setChatRooms(chatRooms);
   };
 
@@ -65,14 +55,26 @@ export const Admin = () => {
       console.log("could not upload image");
     }
   };
+  const onAdd = () => {
+    const credentials = {
+      fullName: "",
+      username: "",
+      password: "",
+      imgUrl:
+        "https://e7.pngegg.com/pngimages/69/512/png-clipart-computer-icons-contact-monochrome-silhouette-thumbnail.png",
+    };
+    setUserToSave(credentials as User);
+    setIsSignup(true)
+    setIsModalOpen(true);
+  };
   const onSaveUser = async () => {
-    console.log("userToSave", userToSave);
-    if(userToSave._id){
+    if (userToSave._id) {
       const updatedUser = await userService.updateAll(userToSave);
-    } else{
-
+    } else {
+      const savedUser = await userService.addUser(userToSave);
     }
     setIsModalOpen(false);
+    setIsSignup(false)
     loadChatRooms();
     loadUsers();
   };
@@ -85,10 +87,15 @@ export const Admin = () => {
           handleImgUpload={handleImgUpload}
           setUserToSave={setUserToSave}
           onSaveUser={onSaveUser}
+          isSignup={isSignup}
+          setIsSignup={setIsSignup}
         />
       )}
       <h1>Hello administrator</h1>
       <h1>Users and friends:</h1>
+      <div className="bttn-container">
+        <button onClick={onAdd}>Create</button>
+      </div>
       <AdminUsersList
         users={users}
         onRemove={onRemove}

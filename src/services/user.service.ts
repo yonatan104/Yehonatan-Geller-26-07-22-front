@@ -16,6 +16,7 @@ export const userService = {
   update,
   refreshLoggedUser,
   updateAll,
+  addUser,
 }
 
 
@@ -41,6 +42,10 @@ async function updateAll(user: User) {
   user = await httpService.put(`user/all`, user)
   // Handle case in which admin updates other user's details
   if (getLoggedinUser()._id === user._id) saveLocalUser(user)
+  return user
+}
+async function addUser(userCred: User) {
+  const user = await httpService.post('user/', userCred)
   return user
 }
 

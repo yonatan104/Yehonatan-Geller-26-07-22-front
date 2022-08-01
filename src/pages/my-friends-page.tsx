@@ -19,6 +19,7 @@ export const MyFriends = () => {
   };
   return (
     <div className="my-friends-page-container">
+      <h1>My Friends</h1>
       <FriendsList friends={friends} enterChatRoom={enterChatRoom} />
     </div>
   );

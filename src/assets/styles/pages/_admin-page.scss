@@ -1,3 +1,11 @@
-.admin-page-container{
+.admin-page-container {
     margin: 1rem;
+
+    .bttn-container {
+        margin-bottom:  10px;
+
+        button {
+            @include btn($type: dark);
+        }
+    }
 }

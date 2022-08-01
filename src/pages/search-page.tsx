@@ -50,7 +50,7 @@ export const Search = () => {
 
   return (
     <div className="search-page-contatiner">
-      <h3>Add more friends just click them</h3>
+      <h1>Add more friends just click them</h1>
       <AccountList users={users} onAdd={onAdd} />
     </div>
   );
