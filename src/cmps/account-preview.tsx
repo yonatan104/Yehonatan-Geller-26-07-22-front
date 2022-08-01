@@ -1,11 +1,12 @@
 import { Friend, User } from "../models/user.model";
 
 type UserProps = {
-  user: User |Friend;
-  type:string
+  user: User | Friend;
+  type: string;
+  onAction: Function | null;
 };
 
-export const AccountPreview = ({ user, type }: UserProps) => {
+export const AccountPreview = ({ user, type, onAction }: UserProps) => {
   return (
     <div className="account-preview-container">
       <div className="inner-container">
@@ -25,7 +26,15 @@ export const AccountPreview = ({ user, type }: UserProps) => {
 
         <div className="account-details">
           <div className="account-name">{user.username}</div>
-          <div className="account-preview-info">{type}</div>
+          {onAction && (
+            <div
+              onClick={() => onAction(user._id)}
+              className="account-preview-info"
+            >
+              {type}
+            </div>
+          )}
+          {!onAction && <div className="account-preview-info">{type}</div>}
         </div>
       </div>
     </div>

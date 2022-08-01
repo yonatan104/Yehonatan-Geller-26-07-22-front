@@ -31,14 +31,17 @@ export const Admin = () => {
 
   const onRemove = async (userId: string) => {
     try {
-      await userService.remove(userId);
+      const deletedUser = await userService.remove(userId);
+      loadChatRooms()
+      loadUsers()
     } catch (error) {
       console.error("can not delete this user");
     }
   };
   return (
     <div className="admin-page-container">
-      <h1>Users:</h1>
+      <h1>Hello administrator</h1>
+      <h1>Users and friends:</h1>
       <AdminUsersList users={users} onRemove={onRemove} />
       <h1>Chat rooms</h1>
       <h3>

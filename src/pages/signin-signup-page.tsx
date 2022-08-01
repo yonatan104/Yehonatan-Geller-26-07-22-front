@@ -14,7 +14,8 @@ export const SigninSignupPage = () => {
     fullName: "",
     username: "",
     password: "",
-    imgUrl: "",
+    imgUrl:
+      "https://e7.pngegg.com/pngimages/69/512/png-clipart-computer-icons-contact-monochrome-silhouette-thumbnail.png",
   });
 
   const onToggleSign = () => {
@@ -25,7 +26,10 @@ export const SigninSignupPage = () => {
     try {
       if (isSignup) await userService.signup(credentials as User);
       else await userService.login(credentials);
-      navigate('/chat-app/friends')
+      const loggedUser = userService.getLoggedinUser()
+      if(loggedUser.isAdmin)navigate('/chat-app/admin')
+      else navigate('/chat-app/search')
+
 
     } catch (error) {
       console.error("can not submit credentials", error);

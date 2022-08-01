@@ -1,18 +1,22 @@
+import { useEffect, useState } from "react";
 import { User } from "../models/user.model";
 import { AccountPreview } from "./account-preview";
+import { UserPreview } from "./user-preview";
 type UsersProps = {
   users: User[];
   onRemove: Function
 };
+
 export const AdminUsersList = ({ users, onRemove }: UsersProps) => {
   return (
-    <div className="account-list">
-      {users.map((user) => (
+    <div className="admin-users-list-container">
+      {users.map((user, idx) => (
         <div key={user._id}>
-          <button onClick={() => onRemove(user._id)}>
-            Delete User and his activities
-          </button>
-          <AccountPreview user={user} type={""} />
+          <UserPreview
+            user={user}
+            idx={idx}
+            onRemove={onRemove}
+          />
         </div>
       ))}
     </div>

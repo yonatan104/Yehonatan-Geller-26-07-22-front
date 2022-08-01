@@ -7,11 +7,12 @@ type UsersProps = {
 export const AccountList = ({ users, onAdd }: UsersProps) => {
   return (
     <div className="account-list">
-      {users.map((user) => (
+      {users.map((user) => {
+        if(!user?.isAdmin)return(
         <div onClick={() => onAdd(user)} key={user._id}>
-          <AccountPreview user={user} type={'Click to add me to your friend list'}/>
+          <AccountPreview user={user} type={'Click to add me to your friend list'} onAction={null}/>
         </div>
-      ))}
+      )})}
     </div>
   );
 };
